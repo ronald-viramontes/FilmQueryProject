@@ -5,20 +5,37 @@ import java.util.List;
 import java.util.Objects;
 
 public class Actor {
+	private int id;
 	private String first_name;
 	private String last_name;
-	private int id;
-	private List<Film> films = new ArrayList<>();
-	
-	public Actor(String first_name, String last_name, int id) {
+	private List<Film> films;
+
+	public Actor(int id, String first_name, String last_name) {
 		super();
+		this.id = id;
 		this.first_name = first_name;
 		this.last_name = last_name;
+		
+	}
+
+	public Actor(int id, String first_name, String last_name, List<Film> films) {
+		super();
 		this.id = id;
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.films = films;
 	}
 
 	public Actor() {
 		super();
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getFirst_name() {
@@ -37,17 +54,24 @@ public class Actor {
 		this.last_name = last_name;
 	}
 
-	public int getId() {
-		return id;
+	public List<Film> getFilms() {
+		System.out.println("-----Actor Films-----");
+		for(Film film : films) {
+			System.out.println("Title: " + film.getTitle() + " Year: " 
+					+ film.getReleaseYear() + " Rating: " + film.getRating() 
+					+ " Description: " + film.getDescription() 
+					+ " Language: " + film.getLanguage());
+		}
+		return films;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setFilms(List<Film> films) {
+		this.films = films;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(first_name, id, last_name);
+		return Objects.hash(films, first_name, id, last_name);
 	}
 
 	@Override
@@ -59,22 +83,13 @@ public class Actor {
 		if (getClass() != obj.getClass())
 			return false;
 		Actor other = (Actor) obj;
-		return Objects.equals(first_name, other.first_name) && id == other.id
+		return Objects.equals(films, other.films) && Objects.equals(first_name, other.first_name) && id == other.id
 				&& Objects.equals(last_name, other.last_name);
 	}
 
 	@Override
 	public String toString() {
-		return "Actor [first_name=" + first_name + ", last_name=" + last_name + ", id=" + id + "]";
+		return "Actor [id=" + id + ", first_name=" + first_name + ", last_name=" + last_name + "]";
 	}
 
-	public void setFilms(Film findFilmById) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
-	
-	
-	
 }
